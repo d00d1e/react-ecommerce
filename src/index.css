@@ -1,13 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  height: 100vh;
+  font-size: 1.6rem;
+  font-family: "Work Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  height: 100%;
+}
+
+/* LAYOUT */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  grid-template-columns: 1fr;
+  grid-template-rows: 12rem 1fr 5rem;
+  height: 100%;
+}
+
+header {
+  grid-area: header;
+  color: #164733;
+}
+
+main {
+  grid-area: main;
+  padding: 1rem;
+}
+
+footer {
+  grid-area: footer;
+  color: #fff;
+  background-color: #164733;
+}
+
+/* COMMON */
+a {
+  text-decoration: none;
+  color: #164733;
+}
+
+a:hover {
+  color: #000;
+}
+
+h1 {
+  font-size: 1.8rem;
+  padding: 0.5rem 0;
+}
+
+h2 {
+  font-size: 1.6rem;
+  padding: 0.5rem 0;
+}
+
+
+/* HEADER */
+header div {
+  padding: 2.5rem;
+}
+
+header a {
+  text-transform: uppercase;
+  padding: 1rem;
+}
+
+a.brand {
+  font-family: 'Cedarville Cursive', cursive;
+  text-transform: none;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.row.center {
+  justify-content: center;
+}
+
+
+/* IMAGES */
+img {
+  border-radius: 0.5rem;
+}
+
+img.medium {
+  max-width: 29rem;
+  width: 100%;
+}
+
+
+/* CARD */
+.card {
+  border: 0.1rem solid #d1bfa7;
+  background-color: #f8f8f8;
+  border-radius: 0.5rem;
+  margin: 1rem;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-body > * {
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 2rem;
+  color: #164733;
+}
+
+
+/* RATING */
+.rating span {
+  color: #f0c040;
+  margin: 0.1rem;
 }
