@@ -12,7 +12,7 @@ export default function ProductView(props) {
   }
   return (
     <>
-    <Link to="/"><i class="fas fa-chevron-left"></i> Back to Products</Link>
+    <Link to="/"><i className="fas fa-chevron-left"></i> Back to Products</Link>
     <div className="row top">
       <div className="col-2">
         <img className="large" src={product.image} alt={product.name} />
@@ -24,7 +24,7 @@ export default function ProductView(props) {
           <li><Rating rating={product.rating} numReviews={product.numReviews} /></li>
           <li>Price: ${product.price}</li>
           <li>Description: <p>{product.description}</p></li>
-          <li>Lighting: <p>{product.lighting}</p></li>
+          <li>Lighting: {product.lighting}</li>
         </ul>
       </div>
       <div className="col-1">
@@ -42,7 +42,7 @@ export default function ProductView(props) {
                   {product.countInStock > 0 ? (
                       <span className="success">{product.countInStock} left in stock!</span>
                     ) : (
-                      <span className="error">Out of Stock</span>
+                      <span className="danger">Out of Stock</span>
                     )}
                 </div>
               </div>
