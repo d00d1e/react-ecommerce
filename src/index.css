@@ -82,17 +82,26 @@ h2 {
   padding: 0.5rem 0;
 }
 
+input,
+select,
+textarea,
 button {
   padding: 1rem;
   border-radius: 0.5rem;
   border: 0.1rem solid #a4a4a4;
-  background-color: #f8f8f8;
   font-size: 1.6rem;
   font-family: "Work Sans", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  background-color: #f8f8f8;
+  cursor: pointer;
+}
+input:hover,
+select:hover,
+textarea:hover,
 button:hover {
   border: 0.1rem solid #404040
 }
@@ -121,6 +130,15 @@ a.brand {
   text-transform: none;
   font-size: 5rem;
   font-weight: bold;
+}
+
+.badge {
+  background-color: #bd8c7d;
+  color: #fff;
+  border-radius: 50%;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.4rem;
+  margin-left: 0.2rem;
 }
 
 .row {
