@@ -168,11 +168,20 @@ a.brand {
   flex: 32 1 75rem;
 }
 
+.min-30 {
+  min-width: 30rem
+}
+
 
 
 /* IMAGES */
 img {
   border-radius: 0.5rem;
+}
+
+img.small {
+  max-width: 5rem;
+  width: 100%;
 }
 
 img.medium {
@@ -183,6 +192,8 @@ img.medium {
 img.large {
   width: 98%;
 }
+
+
 
 /* CARD */
 .card {
@@ -250,3 +261,4 @@ img.large {
   color: #d9534f;
   background-color: #ffe0e0;
 }
+
