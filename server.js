@@ -1,9 +1,15 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 import userRouter from './src/routers/userRouter.js';
 import productRouter from './src/routers/productRouter.js';
 
+dotenv.config();
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 // connect mongoose to db
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
