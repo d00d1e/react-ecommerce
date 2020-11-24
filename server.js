@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // connect mongoose to db
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
+// mongoose.connect('mongodb://localhost/folia', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true})
