@@ -1,10 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import userRouter from './src/routers/userRouter.js';
-import data from './src/data.js';
+import productRouter from './src/routers/productRouter.js';
 
 const app = express();
-
 
 // connect mongoose to db
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
@@ -15,21 +14,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
   .catch(err => console.log(err));
 
 app.use('/api/users', userRouter);
-
-
-app.get('/api/products', (req, res) => {
-  res.send(data.products)
-});
-
-app.get('/api/products/:id', (req, res) => {
-  const product = data.products.find(x => x._id === req.params.id);
-
-  if(product) {
-    res.send(product)
-  } else {
-    res.status(404).send({ message: 'Product Not Found' });
-  }
-});
+app.use('/api/products', productRouter);
 
 app.get('/', (req, res) => {
   res.send("Server is ready");
@@ -37,9 +22,10 @@ app.get('/', (req, res) => {
 
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
-})
+});
 
 
+// listener
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {
