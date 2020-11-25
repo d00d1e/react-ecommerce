@@ -320,3 +320,19 @@ img.large {
 .dropdown:hover .dropdown-content a:hover {
   color: #000;
 }
+
+
+
+/* CHECKOUT STEPS */
+.checkout-steps > div {
+  border-top: 0.3rem solid #c0c0c0;
+  flex: 1;
+  padding: 1rem;
+}
+
+.checkout-steps > div.active{
+  border-top-color: #f1c661;
+  color: #f1c661
+}
+
+
