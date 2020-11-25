@@ -326,13 +326,15 @@ img.large {
 /* CHECKOUT STEPS */
 .checkout-steps > div {
   border-top: 0.3rem solid #c0c0c0;
+  color: #c0c0c0;
   flex: 1;
   padding: 1rem;
+  font-weight: bold ;
 }
 
-.checkout-steps > div.active{
-  border-top-color: #f1c661;
-  color: #f1c661
+.checkout-steps > div.active {
+  border-top-color: #bd8c7d;
+  color: #bd8c7d
 }
 
 
