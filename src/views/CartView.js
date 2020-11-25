@@ -72,7 +72,7 @@ export default function CartView(props) {
                 Subtotal ({cartItems.reduce((a, c) => a + c.qty, 0)} items) : ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}</h2>
             </li>
             <li>
-              <button type="button" onClick={checkoutHandler} className="primary block" disabled={cartItems.length === 0}>Procedd to checkout</button>
+              <button type="button" onClick={checkoutHandler} className="primary block" disabled={cartItems.length === 0}>Proceed to checkout</button>
             </li>
           </ul>
         </div>
