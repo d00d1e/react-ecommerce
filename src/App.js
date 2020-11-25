@@ -5,6 +5,7 @@ import { signout } from './actions/userActions';
 import CartView from './views/CartView';
 import HomeView from './views/HomeView';
 import ProductView from './views/ProductView';
+import RegisterView from './views/RegisterView';
 import SigninView from './views/SigninView';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
           <Route path="/product/:id" component={ProductView} />
           <Route path="/cart/:id?" component={CartView} />
           <Route path="/signin" component={SigninView} />
+          <Route path="/register" component={RegisterView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>
