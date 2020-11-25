@@ -238,6 +238,10 @@ img.large {
 
 
 /* ALERT */
+.loading {
+  display: block !important;
+}
+
 .success {
   color: #5cb85c;
 }

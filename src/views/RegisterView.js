@@ -1,24 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signin } from '../actions/userActions';
+import { register } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
 
-export default function SigninView(props) {
+export default function RegisterView(props) {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const redirect = props.location.search ? props.location.search.split('=')[1] : '/'
 
-  const userSignin = useSelector(state => state.userSignin);
-  const { userInfo, loading, error } = userSignin;
+  const userRegister = useSelector(state => state.userRegister);
+  const { userInfo, loading, error } = userRegister;
 
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(signin(email, password));
+
+    if(password !== confirmPassword) {
+      alert('Passwords do not match');
+    } else {
+      dispatch(register(name, email, password));
+    }
   };
 
   useEffect(() => {
@@ -31,10 +38,20 @@ export default function SigninView(props) {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div className="form-title">
-          <h1>Sign In</h1>
+          <h1>Create Account</h1>
         </div>
         {loading && <LoadingBox />}
         {error && <MessageBox variant="danger">{error}</MessageBox> }
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="Enter Name"
+            onChange={e => setName(e.target.value)}
+            required
+          />
+        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input
@@ -56,13 +73,23 @@ export default function SigninView(props) {
           />
         </div>
         <div>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            id="confirmPassword"
+            type="password"
+            placeholder="Confirm password"
+            onChange={e => setConfirmPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div>
           <label/>
-          <button className="primary" type="submit">Sign In</button>
+          <button className="primary" type="submit">Register</button>
         </div>
         <div>
           <label />
           <div>
-            New Customer? <Link to={`/register?redirect=${redirect}`}>Create an account</Link>
+            Already have an account? <Link to={`/signin?redirect=${redirect}`}>Sign In</Link>
           </div>
         </div>
       </form>
