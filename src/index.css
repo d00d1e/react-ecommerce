@@ -283,8 +283,7 @@ img.large {
 }
 
 .form label {
-  display: block;
-  margin: 1rem 0;
+  margin: 1rem 0.5rem;
 }
 
 
