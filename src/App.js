@@ -4,6 +4,7 @@ import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { signout } from './actions/userActions';
 import CartView from './views/CartView';
 import HomeView from './views/HomeView';
+import OrderView from './views/OrderView';
 import PaymentView from './views/PaymentView';
 import ProductView from './views/ProductView';
 import RegisterView from './views/RegisterView';
@@ -57,6 +58,7 @@ function App() {
           <Route path="/register" component={RegisterView} />
           <Route path="/shipping" component={ShippingView} />
           <Route path="/payment" component={PaymentView} />
+          <Route path="/placeorder" component={OrderView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>
