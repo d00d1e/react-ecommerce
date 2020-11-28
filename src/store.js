@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
 import { userRegisterReducer, userSigninReducer } from './reducers/userReducers';
+import { orderCreateReducer } from './reducers/orderReducers'
 
 const initialState = {
   userSignin: {
@@ -26,7 +27,8 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
-  userRegister: userRegisterReducer
+  userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducer,
 });
 
 // for Chrome Redux Tool

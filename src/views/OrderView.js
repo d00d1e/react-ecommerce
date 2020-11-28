@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../components/CheckoutSteps'
+import { createOrder } from '../actions/orderActions';
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
 
 export default function OrderView(props) {
   const cart = useSelector(state => state.cart);
@@ -9,17 +13,26 @@ export default function OrderView(props) {
     props.history.push('/payment');
   }
 
+  const orderCreate = useSelector((state) => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
   const toPrice = (num) => Number(num.toFixed(2));
-  cart.itemsPrice = toPrice(
-    cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
-  );
+  cart.itemsPrice = toPrice(cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0));
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(5);
   cart.taxPrice = toPrice(0.07 * cart.itemsPrice);
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
+  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
+  const dispatch = useDispatch();
   const placeOrderHandler = () => {
-    // placeOrder action
+    dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
+
+ useEffect(() => {
+   if(success) {
+     props.history.push(`/order/${order._id}`);
+     dispatch({ type: ORDER_CREATE_RESET });
+   }
+ }, [dispatch, order, props.history, success]);
 
   return (
     <div>
@@ -88,13 +101,13 @@ export default function OrderView(props) {
               <li>
                 <div className="row">
                   <div>Tax</div>
-                  <div>${cart.taxPrice}</div>
+                  <div>${cart.taxPrice.toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div><strong>Order Total</strong></div>
-                  <div><strong>${cart.totalPrice}</strong></div>
+                  <div><strong>${cart.totalPrice.toFixed(2)}</strong></div>
                 </div>
               </li>
               <li>
@@ -103,7 +116,11 @@ export default function OrderView(props) {
                   className="primary block"
                   onClick={placeOrderHandler}
                   disabled={cart.cartItems.length === 0}
-                >Place Order</button>
+                >
+                  Place Order
+                </button>
+                {loading && <LoadingBox />}
+                {error && <MessageBox variant="danger">{error}</MessageBox>}
               </li>
             </ul>
           </div>

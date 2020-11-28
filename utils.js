@@ -24,13 +24,14 @@ export const isAuth = (req, res, next) => {
       token,
       process.env.JWT_SECRET || 'myjwtsecret', (err, decode) => {
         if(err) {
-          res.status(401).send({ message: 'Invalid token' });
+          res.status(401).send({ message: 'Invalid Token' });
         } else {
-          res.user = decode
+          req.user = decode;
+          next();
         }
       }
     );
   } else {
-    res.status(401).send({ message: 'No token' });
+    res.status(401).send({ message: 'No Token' });
   }
 };
