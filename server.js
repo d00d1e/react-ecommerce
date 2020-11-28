@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './src/routers/userRouter.js';
 import productRouter from './src/routers/productRouter.js';
+import orderRouter from './src/routers/orderRouter.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
 
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
+app.use('/api/order', orderRouter);
 
 app.get('/', (req, res) => {
   res.send("Server is ready");
