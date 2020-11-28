@@ -21,9 +21,10 @@ mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/folia', {
   .then(() => console.log("Database Connected"))
   .catch(err => console.log(err));
 
+// routes
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-app.use('/api/order', orderRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/', (req, res) => {
   res.send("Server is ready");
