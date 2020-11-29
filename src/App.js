@@ -10,6 +10,7 @@ import ProductView from './views/ProductView';
 import RegisterView from './views/RegisterView';
 import ShippingView from './views/ShippingView';
 import SigninView from './views/SigninView';
+import OrderDetailsView from './views/OrderDetailsView';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -59,6 +60,7 @@ function App() {
           <Route path="/shipping" component={ShippingView} />
           <Route path="/payment" component={PaymentView} />
           <Route path="/placeorder" component={OrderView} />
+          <Route path="/order/:id" component={OrderDetailsView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>
