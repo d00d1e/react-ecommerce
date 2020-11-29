@@ -5,16 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { PayPalButton } from 'react-paypal-button-v2';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { detailsOrder } from '../actions/orderActions';
+import { detailsOrder, payOrder } from '../actions/orderActions';
+import { ORDER_PAY_RESET } from '../constants/orderConstants';
 
 
 export default function OrderView(props) {
-
-
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector(state => state.orderDetails);
   const { order, loading, error } = orderDetails;
+
+  const orderPay = useSelector(state => state.orderPay);
+  const { loading: loadingPay, error: errorPay, success: successPay } = orderPay;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -29,7 +31,8 @@ export default function OrderView(props) {
       };
       document.body.appendChild(script);
     };
-    if (!order) {
+    if (!order || successPay || (order && order._id !== orderId)) {
+      dispatch({ type: ORDER_PAY_RESET });
       dispatch(detailsOrder(orderId));
     } else {
       if (!order.isPaid) {
@@ -40,10 +43,10 @@ export default function OrderView(props) {
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady]);
+  }, [dispatch, order, orderId, sdkReady, successPay]);
 
-  const successPaymentHandler = () => {
-
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(order, paymentResult));
   }
 
   return loading ? (
@@ -52,7 +55,8 @@ export default function OrderView(props) {
     <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     <div>
-      <h1>Order #{order._id}</h1>
+      <h1>Your Order Is In!</h1>
+      <h3>Order #{order._id}</h3>
       <div className="row top">
         <div className="col-2">
           <ul>
@@ -65,9 +69,9 @@ export default function OrderView(props) {
                   {order.shippingAddress.city}, {order.shippingAddress.zipCode}, {order.shippingAddress.country}
                 </p>
                 {order.isDelievered ? (
-                  <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
+                  <MessageBox variant="success">Delivered at {order.paidAt}</MessageBox>
                 ) : (
-                  <MessageBox variant="danger">Not Paid</MessageBox>
+                  <MessageBox variant="danger">Not Delivered</MessageBox>
                 )}
               </div>
             </li>
@@ -78,9 +82,9 @@ export default function OrderView(props) {
                   <strong>Method:</strong> {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
-                  <MessageBox variant="success">Paid at {order.deliveredAt}</MessageBox>
+                  <MessageBox variant="success">Paid at {order.paidAt}</MessageBox>
                 ) : (
-                  <MessageBox variant="danger">Not Delivered</MessageBox>
+                  <MessageBox variant="danger">Not Paid</MessageBox>
                 )}
               </div>
             </li>
@@ -141,10 +145,14 @@ export default function OrderView(props) {
                   {!sdkReady ? (
                     <LoadingBox></LoadingBox>
                   ) : (
-                    <PayPalButton
-                      amount={order.totalPrice}
-                      onSuccess={successPaymentHandler}
-                    ></PayPalButton>
+                    <>
+                      {errorPay && (<MessageBox variant="danger">{errorPay}</MessageBox>)}
+                      {loadingPay && <LoadingBox></LoadingBox>}
+                      <PayPalButton
+                        amount={order.totalPrice}
+                        onSuccess={successPaymentHandler}
+                      ></PayPalButton>
+                    </>
                   )}
                 </li>
               )}
