@@ -114,6 +114,10 @@ button.block {
   width: 100%;
 }
 
+button.small {
+  font-size: 1.2rem;
+}
+
 
 /* HEADER */
 header div {
@@ -300,6 +304,7 @@ img.large {
 }
 
 .dropdown-content {
+  background-color: #fff;
   position: absolute;
   display: none;
   right: 0;
@@ -342,3 +347,24 @@ img.large {
 }
 
 
+
+/* TABLE */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table tbody tr:nth-of-type(odd){
+  background-color: #f4f4f4;
+}
+
+.table td,
+.tabe th {
+  text-align: left;
+  border: 0.1rem solid #e4e4e4;
+  padding: 0.5rem;
+}
+
+.table button {
+  margin: 0 0.2rem;
+}

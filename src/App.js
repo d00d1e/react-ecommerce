@@ -11,6 +11,7 @@ import RegisterView from './views/RegisterView';
 import ShippingView from './views/ShippingView';
 import SigninView from './views/SigninView';
 import OrderDetailsView from './views/OrderDetailsView';
+import OrderHistoryView from './views/OrderHistoryView';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -37,18 +38,17 @@ function App() {
                 <span className="badge">{cartItems.length}</span>
               )}
             </Link>
-            {
-              userInfo ? (
+            {userInfo ? (
                 <div className="dropdown">
                   <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i></Link>
                   <ul className="dropdown-content">
-                    <Link to="#signout" onClick={signoutHandler}>Sign Out</Link>
+                    <li><Link to="/orderhistory">Orders</Link></li>
+                    <li><Link to="#signout" onClick={signoutHandler}>Sign Out</Link></li>
                   </ul>
                 </div>
               ) : (
                 <Link to="/signin">Sign In</Link>
-              )
-            }
+            )}
           </div>
         </header>
         <main>
@@ -61,6 +61,7 @@ function App() {
           <Route path="/payment" component={PaymentView} />
           <Route path="/placeorder" component={OrderView} />
           <Route path="/order/:id" component={OrderDetailsView} />
+          <Route path="/orderhistory" component={OrderHistoryView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>

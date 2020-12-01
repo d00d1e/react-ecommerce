@@ -29,6 +29,16 @@ orderRouter.post(
   })
 );
 
+// order history
+orderRouter.get(
+  '/history',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user._id });
+    res.send(orders);
+  })
+);
+
 // order details
 orderRouter.get(
   '/:id',
@@ -42,6 +52,7 @@ orderRouter.get(
     }
   })
 );
+
 
 // update payment details
 orderRouter.put(
