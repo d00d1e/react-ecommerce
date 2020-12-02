@@ -2,7 +2,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
 import { productDetailsReducer, productListReducer } from './reducers/productReducers';
-import { userDetailsReducer, userRegisterReducer, userSigninReducer } from './reducers/userReducers';
+import { userProfileReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './reducers/userReducers';
 import { orderCreateReducer, orderDetailsReducer, orderHistoryReducer, orderPayReducer } from './reducers/orderReducers';
 
 
@@ -33,7 +33,8 @@ const reducer = combineReducers({
   orderDetails: orderDetailsReducer,
   orderPay: orderPayReducer,
   orderHistory: orderHistoryReducer,
-  userDetails: userDetailsReducer
+  userProfile: userProfileReducer,
+  userUpdateProfile: userUpdateProfileReducer
 });
 
 // for Chrome Redux Tool
