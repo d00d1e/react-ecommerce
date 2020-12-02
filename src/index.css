@@ -319,9 +319,6 @@ img.large {
 .dropdown:hover .dropdown-content,
 .dropdown:hover .dropdown-content a  {
   display: block;
-  /* color: #fff;
-  background-color: #164733; */
-
   border: 1px solid #f1c661;
   color: #164733;
 }
