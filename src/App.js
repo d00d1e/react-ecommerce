@@ -13,6 +13,7 @@ import SigninView from './views/SigninView';
 import OrderDetailsView from './views/OrderDetailsView';
 import OrderHistoryView from './views/OrderHistoryView';
 import ProfileView from './views/ProfileView';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -64,7 +65,7 @@ function App() {
           <Route path="/placeorder" component={OrderView} />
           <Route path="/order/:id" component={OrderDetailsView} />
           <Route path="/orderhistory" component={OrderHistoryView} />
-          <Route path="/profile" component={ProfileView} />
+          <PrivateRoute path="/profile" component={ProfileView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>
