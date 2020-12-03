@@ -14,6 +14,8 @@ import OrderDetailsView from './views/OrderDetailsView';
 import OrderHistoryView from './views/OrderHistoryView';
 import ProfileView from './views/ProfileView';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
+import ProductListView from './views/ProductListView';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -41,20 +43,20 @@ function App() {
               )}
             </Link>
             {userInfo ? (
-                <div className="dropdown">
-                  <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i></Link>
-                  <ul className="dropdown-content">
-                    <li><Link to="/profile">Profile</Link></li>
-                    <li><Link to="/orderhistory">Orders</Link></li>
-                    <li><Link to="#signout" onClick={signoutHandler}>Sign Out</Link></li>
-                  </ul>
-                </div>
-              ) : (
+              <div className="dropdown">
+                <Link to="#">{userInfo.name} <i className="fa fa-caret-down"></i></Link>
+                <ul className="dropdown-content">
+                  <li><Link to="/profile">Profile</Link></li>
+                  <li><Link to="/orderhistory">Orders</Link></li>
+                  <li><Link to="#signout" onClick={signoutHandler}>Sign Out</Link></li>
+                </ul>
+              </div>
+            ) : (
                 <Link to="/signin">Sign In</Link>
-            )}
+              )}
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
-                <Link to="#admin">Admin <i className="fa fa-caret-down"></i></Link>
+                <Link to="#admin">Admin<i className="fa fa-caret-down"></i></Link>
                 <ul className="dropdown-content">
                   <li><Link to="/dashboard">DashBoard</Link></li>
                   <li><Link to="/productlist">Products</Link></li>
@@ -77,6 +79,7 @@ function App() {
           <Route path="/order/:id" component={OrderDetailsView} />
           <Route path="/orderhistory" component={OrderHistoryView} />
           <PrivateRoute path="/profile" component={ProfileView} />
+          <AdminRoute path="/productlist" component={ProductListView} />
         </main>
         <footer className="row center">&#169;2020 All rights reserved</footer>
       </div>
