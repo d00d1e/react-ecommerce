@@ -69,7 +69,7 @@ function App() {
         </header>
         <main>
           <Route exact path="/" component={HomeView} />
-          <Route path="/product/:id" component={ProductView} />
+          <Route exact path="/product/:id" component={ProductView} />
           <Route path="/cart/:id?" component={CartView} />
           <Route path="/signin" component={SigninView} />
           <Route path="/register" component={RegisterView} />

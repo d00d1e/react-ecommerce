@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import { cartReducer } from './reducers/cartReducers';
-import { productDetailsReducer, productListReducer } from './reducers/productReducers';
+import { productCreateReducer, productDetailsReducer, productListReducer } from './reducers/productReducers';
 import { userProfileReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './reducers/userReducers';
 import { orderCreateReducer, orderDetailsReducer, orderHistoryReducer, orderPayReducer } from './reducers/orderReducers';
 
@@ -34,7 +34,8 @@ const reducer = combineReducers({
   orderPay: orderPayReducer,
   orderHistory: orderHistoryReducer,
   userProfile: userProfileReducer,
-  userUpdateProfile: userUpdateProfileReducer
+  userUpdateProfile: userUpdateProfileReducer,
+  productCreate: productCreateReducer
 });
 
 // for Chrome Redux Tool
