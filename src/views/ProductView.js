@@ -39,7 +39,7 @@ export default function ProductView(props) {
             <div className="col-1">
               <ul>
                 <li><h1>{product.name}</h1></li>
-                <li><em><h4>{product.altName}</h4></em></li>
+                <li><em><p>{product.altName}</p></em></li>
                 <li><Rating rating={product.rating} numReviews={product.numReviews} /></li>
                 <li>Price: ${product.price}</li>
                 <li>Description: <p>{product.description}</p></li>
