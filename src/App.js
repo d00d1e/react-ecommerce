@@ -16,6 +16,7 @@ import ProfileView from './views/ProfileView';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 import ProductListView from './views/ProductListView';
+import ProductEditView from './views/ProductEditView';
 
 function App() {
   const cart = useSelector(state => state.cart);
@@ -70,6 +71,7 @@ function App() {
         <main>
           <Route exact path="/" component={HomeView} />
           <Route exact path="/product/:id" component={ProductView} />
+          <Route exact path="/product/:id/edit" component={ProductEditView} />
           <Route path="/cart/:id?" component={CartView} />
           <Route path="/signin" component={SigninView} />
           <Route path="/register" component={RegisterView} />
